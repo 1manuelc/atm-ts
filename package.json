@@ -1,0 +1,29 @@
+{
+  "name": "atm-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test:bdd": "npx cucumber-js --format pretty",
+    "test:bdd:quiet": "npx cucumber-js --format progress",
+    "setup": "prisma generate && prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.1.0",
+    "@cucumber/pretty-formatter": "^2.0.1",
+    "@types/node": "^24.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "chalk": "^4.1.2",
+    "prisma": "^6.13.0",
+    "sqlite3": "^5.1.7"
+  }
+}
