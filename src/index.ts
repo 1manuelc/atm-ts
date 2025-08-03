@@ -1,11 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import { endReadline, questionAsync } from './utils/question';
-import { TransactionService } from './services/transaction';
 import chalk from 'chalk';
 import { AccountController } from './controllers/account';
 import { TransactionController } from './controllers/transaction';
-
-const prisma = new PrismaClient();
+import { prisma } from './db/prisma';
 
 async function handleEndSession() {
 	console.log(chalk.bgGray('Obrigado por usar o caixa eletrônico!'));
