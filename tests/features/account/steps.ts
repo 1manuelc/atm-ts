@@ -1,24 +1,11 @@
-import { Given, When, Then, Before, After } from '@cucumber/cucumber';
+import { Given, When, Then } from '@cucumber/cucumber';
 import assert from 'assert';
 import { AccountService } from '../../../src/services/account';
 import { prisma } from '../../../src/db/prisma';
-import { resetDatabase } from '../../utils/reset-db';
 
 let createdAccount: any;
 let lastError: string | undefined;
 let queriedBalance: number | undefined;
-
-// Limpa tabela antes de cada cenário
-Before(async () => {
-	await resetDatabase();
-	createdAccount = undefined;
-	lastError = undefined;
-	queriedBalance = undefined;
-});
-
-After(async () => {
-	await prisma.$disconnect();
-});
 
 When(
 	'o usuário cria uma conta com nome {string} e saldo {string}',

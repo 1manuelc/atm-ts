@@ -7,7 +7,7 @@ import { AccountService } from '../../../src/services/account';
 let capturedError: string | null = null;
 
 Given(
-	/^que existem duas contas: ID (\d+) com saldo (\d+) e ID (\d+) com saldo (\d+)$/,
+	/^que na transferencia existem duas contas: ID (\d+) com saldo (\d+) e ID (\d+) com saldo (\d+)$/,
 	async (id1: number, saldo1: number, id2: number, saldo2: number) => {
 		await prisma.account.upsert({
 			where: { id: id1 },
@@ -24,7 +24,7 @@ Given(
 );
 
 Given(
-	/^que existe uma conta com ID (\d+) e saldo (\d+)$/,
+	/^que na transferencia existe uma conta com ID (\d+) e saldo (\d+)$/,
 	async (id: number, saldo: number) => {
 		await prisma.account.upsert({
 			where: { id },
@@ -51,14 +51,14 @@ When(
 );
 
 Then(
-	/^o saldo da conta (\d+) deve ser (\d+)$/,
+	/^na transferencia o saldo da conta (\d+) deve ser (\d+)$/,
 	async (id: number, esperado: number) => {
 		const saldo = await AccountService.getBalance(id);
 		assert.strictEqual(saldo, esperado);
 	}
 );
 
-Then(/^deve ocorrer um erro "(.*)"$/, async (mensagem: string) => {
+Then(/^na transferencia deve ocorrer um erro "(.*)"$/, async (mensagem: string) => {
 	assert.ok(capturedError, 'Esperava um erro, mas nenhum foi lançado');
 	assert.strictEqual(
 		capturedError,

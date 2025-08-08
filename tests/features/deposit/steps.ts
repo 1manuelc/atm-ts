@@ -10,7 +10,6 @@ let lastError: string | undefined;
 let queriedBalance: number | undefined;
 
 Before(async () => {
-	await resetDatabase();
 	createdAccount = undefined;
 	lastError = undefined;
 	queriedBalance = undefined;
@@ -20,7 +19,7 @@ After(async () => {
 	await prisma.$disconnect();
 });
 
-Given(/^uma conta com saldo de R\$ ([\d,]+)$/, async (balanceStr: string) => {
+Given(/^no deposito ha uma conta com saldo de R\$ ([\d,]+)$/, async (balanceStr: string) => {
 	const balance = parseFloat(balanceStr.replace(',', '.'));
 	createdAccount = await AccountService.createAccount('Conta Teste', balance);
 });
@@ -47,7 +46,7 @@ When(
 	}
 );
 
-Then(/^o novo saldo deve ser R\$ ([\d,]+)$/, (expectedBalance: string) => {
+Then(/^no deposito o novo saldo deve ser R\$ ([\d,]+)$/, (expectedBalance: string) => {
 	const expected = parseFloat(expectedBalance.replace(',', '.'));
 	assert.strictEqual(queriedBalance, expected);
 });
